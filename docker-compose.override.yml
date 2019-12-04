@@ -26,7 +26,8 @@ services:
   php:
     volumes:
       # put your drupal source code and mount as volume.
-      - ./volumes/drupal:/var/www/html:cached
+      # - ./volumes/drupal:/var/www/html:cached
+      - ../drupal-main:/var/www/html:cached
       # Replace volume to this to use docker-sync for mac OS users to resolve performance issue.
       # See also: https://github.com/docker/for-mac/issues/77
       # - drupal_source:/var/www/html:rw
@@ -45,8 +46,9 @@ services:
     environment:
       VIRTUAL_HOST: localhost
     volumes:
-      # Drupal コードのマウント
-      - ./volumes/drupal:/var/www/html:cached
+      # Drupal コードのマウント 同一階層の "drupal-main"を参照する
+      - ../drupal-main:/var/www/html:cached
+      # - ./volumes/drupal:/var/www/html:cached
       # Replace volume to this to use docker-sync for mac OS users to resolve performance issue.
       # See also: https://github.com/docker/for-mac/issues/77
       # - drupal_source:/var/www/html:rw
